@@ -164,7 +164,8 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       margin-top: 24px;
-      color: var(--text); /* было #e7e7e7 */
+      color: var(--text);
+      /* было #e7e7e7 */
     }
 
     .section {
@@ -199,19 +200,32 @@
       padding: 22px
     }
 
+    .burger {
+      font-size: 24px;
+      margin-left: 8px;
+      display: none;
+      /* по умолчанию скрыт */
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+    }
+
     /* Выравнивание кнопок в карточках тарифов */
-.glass.card-sm {
-  display: flex;
-  flex-direction: column;
-}
+    .glass.card-sm {
+      display: flex;
+      flex-direction: column;
+    }
 
-.glass.card-sm ul {
-  flex-grow: 1; /* список растягивается */
-}
+    .glass.card-sm ul {
+      flex-grow: 1;
+      /* список растягивается */
+    }
 
-.glass.card-sm a.btn {
-  margin-top: auto; /* кнопка прижимается к низу */
-}
+    .glass.card-sm a.btn {
+      margin-top: auto;
+      /* кнопка прижимается к низу */
+    }
 
 
     .muted {
@@ -272,7 +286,8 @@
 
     .faq-a {
       padding: 0 18px 18px;
-      color: var(--muted); /* было #e7e7e7 */
+      color: var(--muted);
+      /* было #e7e7e7 */
       display: none;
     }
 
@@ -339,71 +354,186 @@
     }
 
     /* Фикс цвета для светлой темы */
-body.light .nav a.link,
-body.light .nav .toggle {
-  color: #111 !important;
-}
+    body.light .nav a.link,
+    body.light .nav .toggle {
+      color: #111 !important;
+    }
 
-body.light .pill {
-  color: #111 !important;
-  border-color: var(--gold);
-  background: rgba(242, 201, 76, 0.15);
-}
+    body.light .pill {
+      color: #111 !important;
+      border-color: var(--gold);
+      background: rgba(242, 201, 76, 0.15);
+    }
 
-/* Общие стили для селекта */
-select, option {
-  background: var(--bg-2);
-  color: var(--text);
-  border: 1px solid var(--glass-b);
-  padding: 8px 10px;
-  border-radius: 8px;
-}
+    /* Общие стили для селекта */
+    select,
+    option {
+      background: var(--bg-2);
+      color: var(--text);
+      border: 1px solid var(--glass-b);
+      padding: 8px 10px;
+      border-radius: 8px;
+    }
 
-/* Тёмная тема */
-body:not(.light) select,
-body:not(.light) option {
-  color: #ddd;          /* светлый текст */
-}
+    /* Тёмная тема */
+    body:not(.light) select,
+    body:not(.light) option {
+      color: #ddd;
+      /* светлый текст */
+    }
 
-/* Светлая тема */
-body.light select,
-body.light option {    /* белый фон */
-  color: #111;          /* чёрный текст */
-}
+    /* Светлая тема */
+    body.light select,
+    body.light option {
+      /* белый фон */
+      color: #111;
+      /* чёрный текст */
+    }
 
-footer strong,
-footer a,
-footer span {
-  color: var(--text); /* применим основной цвет текста для читаемости */
-}
+    footer strong,
+    footer a,
+    footer span {
+      color: var(--text);
+      /* применим основной цвет текста для читаемости */
+    }
 
-footer .muted {
-  color: var(--muted); /* уже есть — но добавим для ясности */
-}
+    footer .muted {
+      color: var(--muted);
+      /* уже есть — но добавим для ясности */
+    }
 
-#themeToggle {
-  border: none !important;
-}
+    #themeToggle {
+      border: none !important;
+    }
 
-    @media (max-width: 960px) {
+    .mobile-only {
+      display: none;
+    }
+
+    .desktop-only {
+      display: inline-flex;
+    }
+
+    /* === Адаптив под мобильные (до 768px) === */
+    @media (max-width: 768px) {
+      header.nav .nav-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      header.nav nav.nav {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 6px;
+      }
+
+      header.nav a.btn.btn-primary {
+        width: 100%;
+        text-align: center;
+        margin-top: 6px;
+      }
+
       .title-xl {
-        font-size: 30px
+        font-size: 24px;
+        line-height: 1.2;
       }
 
-      .grid-4 {
-        grid-template-columns: repeat(2, minmax(0, 1fr))
+      h2.section-title {
+        font-size: 22px;
       }
 
-      .grid-3 {
-        grid-template-columns: repeat(1, minmax(0, 1fr))
-      }
-
-      .grid-2 {
-        grid-template-columns: repeat(1, minmax(0, 1fr))
+      .lead {
+        font-size: 15px;
+        padding: 0 6px;
+        word-break: break-word;
+        /* длинные слова переносятся */
+        overflow-wrap: break-word;
       }
 
       .trust {
-        grid-template-columns: repeat(2, minmax(0, 1fr))
+        grid-template-columns: 1fr;
+        /* по одной строке */
+        text-align: center;
+      }
+
+      .grid-4,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr !important;
+        /* карточки в колонку */
+      }
+
+      .glass.card,
+      .glass.card-sm {
+        padding: 18px;
+      }
+
+      .pill {
+        font-size: 10px;
+        padding: 6px 10px;
+      }
+
+      .burger {
+        display: block;
+      }
+
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+        background: var(--bg-2);
+        padding: 16px;
+        border-radius: 12px;
+        position: absolute;
+        top: 60px;
+        /* отступ от хедера */
+        right: 20px;
+        z-index: 100;
+      }
+
+      .nav-menu.open {
+        display: flex;
+      }
+
+      .desktop-only {
+        display: none;
+      }
+
+      .mobile-only {
+        display: inline-flex;
+        margin-top: 10px;
+      }
+
+    }
+
+    /* === Совсем маленькие экраны (до 480px) === */
+    @media (max-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+
+      .title-xl {
+        font-size: 20px;
+      }
+
+      header.nav .logo strong {
+        font-size: 14px;
+      }
+
+      nav.nav a.link {
+        font-size: 13px;
+        padding: 6px 8px;
+      }
+
+      .btn {
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+
+      footer {
+        padding: 30px 0;
+        font-size: 13px;
       }
     }
   </style>
@@ -415,33 +545,43 @@ footer .muted {
     <div class="container">
       <div class="glass nav-inner">
         <div class="nav-row">
-          <a href="#top" class="logo" aria-label="RAG‑Bots Studio"
-            style="display:flex;align-items:center;gap:10px;color:var(--gold)">
-            <span
-              style="width:28px;height:28px;border-radius:10px;background:linear-gradient(135deg,#ffe08a,var(--gold-2));display:inline-block"></span>
-            <strong>X‑Bots Studio</strong>
-          </a>
-          <nav class="nav" aria-label="Главное меню" style="display:flex;gap:8px;flex-wrap:wrap">
-            <a class="link" href="#packages">Тарифы</a>
-            <a class="link" href="#benefits">Возможности</a>
-            <a class="link" href="#how">Как это работает</a>
-            <a class="link" href="#tech">Техархитектура</a>
-            <a class="link" href="#guarantee">Гарантии</a>
-            <a class="link" href="#cases">Кейсы</a>
-            <a class="link" href="#faq">FAQ</a>
 
-            <!-- КНОПКА ТЕМЫ В МЕНЮ -->
-            <button id="themeToggle" type="button" class="toggle toggle--accent" aria-label="Переключить тему">
-              <span class="icon" id="themeIcon"></span>
-              <span id="themeText">Тема</span>
-            </button>
-          </nav>
-          <a class="btn btn-primary" href="#lead">Заказать демо</a>
+          <!-- ЛОГО + БУРГЕР -->
+          <div style="display:flex;align-items:center;gap:10px">
+            <a href="#top" class="logo" aria-label="RAG-Bots Studio"
+              style="display:flex;align-items:center;gap:10px;color:var(--gold)">
+              <span style="width:28px;height:28px;border-radius:10px;
+                     background:linear-gradient(135deg,#ffe08a,var(--gold-2));
+                     display:inline-block"></span>
+              <strong>X-Bots Studio</strong>
+            </a>
+            <button class="burger" id="burgerBtn">☰</button>
+          </div>
+
+          <!-- НАВИГАЦИЯ -->
+          <div class="menu-wrapper" style="display:flex;align-items:center;gap:8px">
+            <nav class="nav-menu" id="mainMenu" aria-label="Главное меню">
+              <a class="link" href="#packages">Тарифы</a>
+              <a class="link" href="#benefits">Возможности</a>
+              <a class="link" href="#how">Как это работает</a>
+              <a class="link" href="#tech">Техархитектура</a>
+              <a class="link" href="#guarantee">Гарантии</a>
+              <a class="link" href="#cases">Кейсы</a>
+              <a class="link" href="#faq">FAQ</a>
+              <button id="themeToggle" type="button" class="toggle toggle--accent">Тема</button>
+              <!-- Мобильная кнопка -->
+              <a class="btn btn-primary mobile-only" href="#lead">Заказать демо</a>
+            </nav>
+          </div>
+
+          <!-- Десктопная кнопка справа -->
+          <a class="btn btn-primary desktop-only" href="#lead">Заказать демо</a>
 
         </div>
       </div>
     </div>
   </header>
+
 
   <!-- HERO -->
   <main id="top" class="hero">
@@ -451,10 +591,11 @@ footer .muted {
         <h1 class="title-xl" style="margin:16px 0 0">Умные ИИ чат‑боты на основе ваших данных<br><span>за 24–48
             часов</span></h1>
         <p class="lead">
-          Мы превращаем ваши сайты и документы в «умную» базу знаний. 
-          Вы получаете <strong>ИИ-консультанта вашей компании</strong>, который не просто отвечает, 
-          а тонко продаёт: услуги, товары, цены, адреса — всё, что нужно вашим клиентам. 
-          Бот работает только с вашими данными — без галлюцинаций, с гарантированной точностью, аналитикой и фирменным стилем.
+          Мы превращаем ваши сайты и документы в «умную» базу знаний.
+          Вы получаете <strong>ИИ-консультанта вашей компании</strong>, который не просто отвечает,
+          а тонко продаёт: услуги, товары, цены, адреса — всё, что нужно вашим клиентам.
+          Бот работает только с вашими данными — без галлюцинаций, с гарантированной точностью, аналитикой и фирменным
+          стилем.
         </p>
         <div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
           <a href="#lead" class="btn btn-primary">Получить демо за 1 день</a>
@@ -513,92 +654,95 @@ footer .muted {
         <div class="glass card-sm">
           <div class="muted">03</div>
           <h3>Получаете решение</h3>
-          <p class="muted">Бот отвечает простым и понятным языком, как живой сотрудник — 24/7 и всегда вежливо и с тонкими продажами.</p>
+          <p class="muted">Бот отвечает простым и понятным языком, как живой сотрудник — 24/7 и всегда вежливо и с
+            тонкими продажами.</p>
         </div>
         <div class="glass card-sm">
           <div class="muted">04</div>
           <h3>Сложное? — к менеджеру</h3>
-          <p class="muted">Если вопрос нестандартный, бот передаёт его вашему специалисту — клиент не остаётся без ответа.</p>
+          <p class="muted">Если вопрос нестандартный, бот передаёт его вашему специалисту — клиент не остаётся без
+            ответа.</p>
         </div>
       </div>
-    <h2 class="section-title">Попробуйте демо — убедитесь, что бот отвечает как живой сотрудник и помогает продавать больше.</h2>
+      <h2 class="section-title">Попробуйте демо — убедитесь, что бот отвечает как живой сотрудник и помогает продавать
+        больше.</h2>
     </div>
   </section>
 
-<!-- PACKAGES -->
-<section id="packages" class="section">
-  <div class="container">
-    <h2 class="section-title">Готовые пакеты</h2>
-    <!-- <p class="muted" style="margin-top:6px">Минимум правок — быстрый запуск по вашему шаблону. Тестирование демо. Оплата после получения результата.</p> -->
-    <div class="grid grid-4" style="margin-top:16px">
+  <!-- PACKAGES -->
+  <section id="packages" class="section">
+    <div class="container">
+      <h2 class="section-title">Готовые пакеты</h2>
+      <!-- <p class="muted" style="margin-top:6px">Минимум правок — быстрый запуск по вашему шаблону. Тестирование демо. Оплата после получения результата.</p> -->
+      <div class="grid grid-4" style="margin-top:16px">
 
-      <!-- PLUS -->
-      <div class="glass card-sm">
-        <span class="pill" style="margin-bottom:8px">Быстрый старт</span>
-        <h3>FAQ-бот за 24 часа</h3>
-        <div class="price">39 000 ₽</div>
-        <div class="muted">= тариф PLUS</div>
-        <ul class="list" style="margin-top:10px;display:grid;gap:8px">
-          <li><span class="check"></span><span>Данные: ваш сайт</span></li>
-          <li><span class="check"></span><span>Гарантия точности 80%+</span></li>
-          <li><span class="check"></span><span>Логи вопросов в Google Sheets</span></li>
-          <li><span class="check"></span><span>Команды: /stats, /reindex</span></li>
-          <li><span class="check"></span><span>Установка на наш или наш VDS<br> <br> <br> <br> </span></li>
-        </ul>
-        <a href="#lead" class="btn btn-primary" style="width:100%;margin-top:12px">Выбрать</a>
+        <!-- PLUS -->
+        <div class="glass card-sm">
+          <span class="pill" style="margin-bottom:8px">Быстрый старт</span>
+          <h3>FAQ-бот за 24 часа</h3>
+          <div class="price">39 000 ₽</div>
+          <div class="muted">= тариф PLUS</div>
+          <ul class="list" style="margin-top:10px;display:grid;gap:8px">
+            <li><span class="check"></span><span>Данные: ваш сайт</span></li>
+            <li><span class="check"></span><span>Гарантия точности 80%+</span></li>
+            <li><span class="check"></span><span>Логи вопросов в Google Sheets</span></li>
+            <li><span class="check"></span><span>Команды: /stats, /reindex</span></li>
+            <li><span class="check"></span><span>Установка на наш или наш VDS<br> <br> <br> <br> </span></li>
+          </ul>
+          <a href="#lead" class="btn btn-primary" style="width:100%;margin-top:12px">Выбрать</a>
+        </div>
+
+        <!-- PRO (объединён с Отзывы+бонусы) -->
+        <div class="glass card-sm">
+          <span class="pill" style="margin-bottom:8px">Рост продаж</span>
+          <h3>PRO: + аналитика + отзывы</h3>
+          <div class="price">79 000 ₽</div>
+          <div class="muted">= тариф PRO (включая «Отзывы + бонусы»)</div>
+          <ul class="list" style="margin-top:10px;display:grid;gap:8px">
+            <li><span class="check"></span><span>Аналитика чатов: поиск упущенной выгоды</span></li>
+            <li><span class="check"></span><span>Кнопки навигации (до 4 шт.)</span></li>
+            <li><span class="check"></span><span>Запись диалогов в Google Sheets</span></li>
+            <li><span class="check"></span><span>Модуль «Отзывы + бонусы»: NPS, промокоды</span></li>
+            <li><span class="check"></span><span>Антиспам и базовая модерация<br> <br> </span></li>
+          </ul>
+          <a href="#lead" class="btn btn-primary" style="width:100%;margin-top:12px">Выбрать</a>
+        </div>
+
+        <!-- Вики-бот -->
+        <div class="glass card-sm">
+          <span class="pill" style="margin-bottom:8px">B2B-лидер</span>
+          <h3>Внутренний вики-бот (48 ч)</h3>
+          <div class="price">89 000 ₽</div>
+          <div class="muted">+ поддержка 20–30 тыс/мес</div>
+          <ul class="list" style="margin-top:10px;display:grid;gap:8px">
+            <li><span class="check"></span><span>Данные: PDF/DOCX регламенты</span></li>
+            <li><span class="check"></span><span>Роли, дисклеймеры, доступы</span></li>
+            <li><span class="check"></span><span>Обновление базы по кнопке</span></li>
+            <li><span class="check"></span><span>Автоснапшоты индекса (daily)</span></li>
+            <li><span class="check"></span><span>Доступ менеджерам/отделам<br> <br> <br> <br> </span></li>
+          </ul>
+          <a href="#lead" class="btn btn-primary" style="width:100%;margin-top:12px">Выбрать</a>
+        </div>
+
+        <!-- PRO+ -->
+        <div class="glass card-sm">
+          <span class="pill" style="margin-bottom:8px">Всё включено</span>
+          <h3>PRO+: полное сопровождение</h3>
+          <div class="price">119 000 ₽</div>
+          <div class="muted">разовый запуск + опциональная подписка</div>
+          <ul class="list" style="margin-top:10px;display:grid;gap:8px">
+            <li><span class="check"></span><span>Всё из PRO</span></li>
+            <li><span class="check"></span><span>Подписка 15–25 тыс/мес: VDS+API, мониторинг</span></li>
+            <li><span class="check"></span><span>Ежемесячное обновление базы данных</span></li>
+            <li><span class="check"></span><span>Приоритетная поддержка, SLA-реакция</span></li>
+            <li><span class="check"></span><span>Месячный отчёт: статистика, рекомендации</span></li>
+          </ul>
+          <a href="#lead" class="btn btn-primary" style="width:100%;margin-top:12px">Выбрать</a>
+        </div>
+
       </div>
-
-      <!-- PRO (объединён с Отзывы+бонусы) -->
-      <div class="glass card-sm">
-        <span class="pill" style="margin-bottom:8px">Рост продаж</span>
-        <h3>PRO: + аналитика + отзывы</h3>
-        <div class="price">79 000 ₽</div>
-        <div class="muted">= тариф PRO (включая «Отзывы + бонусы»)</div>
-        <ul class="list" style="margin-top:10px;display:grid;gap:8px">
-          <li><span class="check"></span><span>Аналитика чатов: поиск упущенной выгоды</span></li>
-          <li><span class="check"></span><span>Кнопки навигации (до 4 шт.)</span></li>
-          <li><span class="check"></span><span>Запись диалогов в Google Sheets</span></li>
-          <li><span class="check"></span><span>Модуль «Отзывы + бонусы»: NPS, промокоды</span></li>
-          <li><span class="check"></span><span>Антиспам и базовая модерация<br> <br> </span></li>
-        </ul>
-        <a href="#lead" class="btn btn-primary" style="width:100%;margin-top:12px">Выбрать</a>
-      </div>
-
-      <!-- Вики-бот -->
-      <div class="glass card-sm">
-        <span class="pill" style="margin-bottom:8px">B2B-лидер</span>
-        <h3>Внутренний вики-бот (48 ч)</h3>
-        <div class="price">89 000 ₽</div>
-        <div class="muted">+ поддержка 20–30 тыс/мес</div>
-        <ul class="list" style="margin-top:10px;display:grid;gap:8px">
-          <li><span class="check"></span><span>Данные: PDF/DOCX регламенты</span></li>
-          <li><span class="check"></span><span>Роли, дисклеймеры, доступы</span></li>
-          <li><span class="check"></span><span>Обновление базы по кнопке</span></li>
-          <li><span class="check"></span><span>Автоснапшоты индекса (daily)</span></li>
-          <li><span class="check"></span><span>Доступ менеджерам/отделам<br> <br> <br> <br> </span></li>
-        </ul>
-        <a href="#lead" class="btn btn-primary" style="width:100%;margin-top:12px">Выбрать</a>
-      </div>
-
-      <!-- PRO+ -->
-      <div class="glass card-sm">
-        <span class="pill" style="margin-bottom:8px">Всё включено</span>
-        <h3>PRO+: полное сопровождение</h3>
-        <div class="price">119 000 ₽</div>
-        <div class="muted">разовый запуск + опциональная подписка</div>
-        <ul class="list" style="margin-top:10px;display:grid;gap:8px">
-          <li><span class="check"></span><span>Всё из PRO</span></li>
-          <li><span class="check"></span><span>Подписка 15–25 тыс/мес: VDS+API, мониторинг</span></li>
-          <li><span class="check"></span><span>Ежемесячное обновление базы данных</span></li>
-          <li><span class="check"></span><span>Приоритетная поддержка, SLA-реакция</span></li>
-          <li><span class="check"></span><span>Месячный отчёт: статистика, рекомендации</span></li>
-        </ul>
-        <a href="#lead" class="btn btn-primary" style="width:100%;margin-top:12px">Выбрать</a>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- TECH -->
   <section id="tech" class="section">
@@ -742,10 +886,12 @@ footer .muted {
               <!--<li><span class="check"></span><span>Метрики и логи в Google Sheets</span></li>-->
               <li>
                 <span class="check"></span>
-                <span><a href="https://t.me/LazarevMikl" target="_blank" rel="noopener">Проконсультируйтесь в Telegram - <u>RAG‑Bots Studio</u></a></span>
+                <span><a href="https://t.me/LazarevMikl" target="_blank" rel="noopener">Проконсультируйтесь в Telegram -
+                    <u>RAG‑Bots Studio</u></a></span>
               </li>
               <li>
-              <span class="check"></span><span>Или напишите на почту: <a href="mailto:xbotstudio@mail.ru">xbotstudio@mail.ru</a></p></span>
+                <span class="check"></span><span>Или напишите на почту: <a
+                    href="mailto:xbotstudio@mail.ru">xbotstudio@mail.ru</a></p></span>
               </li>
             </ul>
           </div>
@@ -763,7 +909,8 @@ footer .muted {
               </select>
               <textarea name="task" rows="4" placeholder="Кратко опишите задачу"></textarea>
               <button class="btn btn-primary" type="submit">Получить демо</button>
-              <small class="muted">Отправляя форму, вы соглашаетесь с обработкой данных и получаете инструкции в Telegram.</small>
+              <small class="muted">Отправляя форму, вы соглашаетесь с обработкой данных и получаете инструкции в
+                Telegram.</small>
             </div>
           </form>
         </div>
@@ -831,21 +978,44 @@ footer .muted {
       document.body.classList.toggle('light');
     });
     // ====== Отправка «формы» в Telegram без сервера
-    function openBrief(e){
+    function openBrief(e) {
       e.preventDefault();
       const form = e.target;
       const name = form.querySelector('[name="name"]').value;
       const company = form.querySelector('[name="company"]').value;
       const contact = form.querySelector('[name="contact"]').value;
       const site = form.querySelector('[name="site"]').value;
-      const pack = form.querySelector('[name="package"]').value;const task = form.querySelector('[name="task"]').value;
+      const pack = form.querySelector('[name="package"]').value; const task = form.querySelector('[name="task"]').value;
 
       const text = encodeURIComponent(
         `Привет! Хочу демо.\n\nИмя: ${name}\nКомпания: ${company}\nКонтакты: ${contact}\nСайт/документы: ${site}\nПакет: ${pack}\nЗадача: ${task}`
       );
-      
+
       window.open(`https://t.me/LazarevMikl?text=${text}`, '_blank');
     }
+
+    // Бургер-меню
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mainMenu = document.getElementById('mainMenu');
+
+    burgerBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); // чтобы клик по кнопке не закрывал сразу меню
+      mainMenu.classList.toggle('open');
+    });
+
+    // закрыть меню при клике на пункт
+    mainMenu.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('click', () => {
+        mainMenu.classList.remove('open');
+      });
+    });
+
+    // закрыть меню при клике вне его
+    document.addEventListener('click', (e) => {
+      if (!mainMenu.contains(e.target) && !burgerBtn.contains(e.target)) {
+        mainMenu.classList.remove('open');
+      }
+    });
   </script>
 </body>
 
