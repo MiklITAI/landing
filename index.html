@@ -118,7 +118,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px
+      /* логотип слева, бургер/меню справа */
     }
 
     .nav a.link {
@@ -200,16 +200,28 @@
       padding: 22px
     }
 
+    /* Кнопка-бургер: по умолчанию скрыта на десктопе */
     .burger {
-      font-size: 24px;
-      margin-left: 8px;
       display: none;
-      /* по умолчанию скрыт */
-      background: none;
-      border: none;
-      cursor: pointer;
+      /* появится только в media ниже */
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border: 0;
+      background: transparent;
       color: var(--text);
+      cursor: pointer;
+
+      /* чтобы значок стоял ровно по центру «квадратика» */
+      display: none;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      /* убираем влияние базовой линии */
+      margin-left: auto;
+      /* прижимаем вправо в одной строке с логотипом */
     }
+
 
     /* Выравнивание кнопок в карточках тарифов */
     .glass.card-sm {
@@ -416,24 +428,74 @@
 
     /* === Адаптив под мобильные (до 768px) === */
     @media (max-width: 768px) {
+
+      /* Линия хедера: лого слева, бургер справа */
       header.nav .nav-row {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         gap: 8px;
       }
 
-      header.nav nav.nav {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        gap: 6px;
+      /* Лого остаётся слева */
+      header.nav .logo {
+        flex: 0 0 auto;
       }
 
-      header.nav a.btn.btn-primary {
+      /* Бургер справа */
+      .burger {
+        display: flex;
+        /* показываем бургер */
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        font-size: 26px;
+        cursor: pointer;
+        margin-left: auto;
+        /* прижать вправо */
+      }
+
+      /* Скрываем обычное меню */
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+        background: var(--bg-2);
+        padding: 16px;
+        border-radius: 12px;
+        position: absolute;
+        top: 60px;
+        /* под хедером */
+        right: 20px;
+        z-index: 100;
+      }
+
+      /* При открытии */
+      .nav-menu.open {
+        display: flex;
+      }
+
+      /* Кнопка внутри бургера */
+      .nav-menu .btn {
         width: 100%;
         text-align: center;
-        margin-top: 6px;
       }
 
+      /* Убираем дубли на мобилке */
+      .desktop-only {
+        display: none;
+      }
+
+      /* Доп. элементы только для мобилки */
+      .mobile-only {
+        display: inline-flex;
+        margin-top: 10px;
+      }
+
+      /* Заголовки и текст */
       .title-xl {
         font-size: 24px;
         line-height: 1.2;
@@ -447,13 +509,11 @@
         font-size: 15px;
         padding: 0 6px;
         word-break: break-word;
-        /* длинные слова переносятся */
         overflow-wrap: break-word;
       }
 
       .trust {
         grid-template-columns: 1fr;
-        /* по одной строке */
         text-align: center;
       }
 
@@ -461,7 +521,6 @@
       .grid-3,
       .grid-2 {
         grid-template-columns: 1fr !important;
-        /* карточки в колонку */
       }
 
       .glass.card,
@@ -473,68 +532,6 @@
         font-size: 10px;
         padding: 6px 10px;
       }
-
-      .burger {
-        display: block;
-      }
-
-      .nav-menu {
-        display: none;
-        flex-direction: column;
-        gap: 12px;
-        background: var(--bg-2);
-        padding: 16px;
-        border-radius: 12px;
-        position: absolute;
-        top: 60px;
-        /* отступ от хедера */
-        right: 20px;
-        z-index: 100;
-      }
-
-      .nav-menu.open {
-        display: flex;
-      }
-
-      .desktop-only {
-        display: none;
-      }
-
-      .mobile-only {
-        display: inline-flex;
-        margin-top: 10px;
-      }
-
-    }
-
-    /* === Совсем маленькие экраны (до 480px) === */
-    @media (max-width: 480px) {
-      body {
-        font-size: 14px;
-      }
-
-      .title-xl {
-        font-size: 20px;
-      }
-
-      header.nav .logo strong {
-        font-size: 14px;
-      }
-
-      nav.nav a.link {
-        font-size: 13px;
-        padding: 6px 8px;
-      }
-
-      .btn {
-        padding: 10px 16px;
-        font-size: 14px;
-      }
-
-      footer {
-        padding: 30px 0;
-        font-size: 13px;
-      }
     }
   </style>
 </head>
@@ -545,43 +542,34 @@
     <div class="container">
       <div class="glass nav-inner">
         <div class="nav-row">
+          <!-- Логотип -->
+          <a href="#top" class="logo" aria-label="RAG-Bots Studio"
+            style="display:flex;align-items:center;gap:10px;color:var(--gold)">
+            <span style="width:28px;height:28px;border-radius:10px;
+                   background:linear-gradient(135deg,#ffe08a,var(--gold-2));
+                   display:inline-block"></span>
+            <strong>X-Bots Studio</strong>
+          </a>
 
-          <!-- ЛОГО + БУРГЕР -->
-          <div style="display:flex;align-items:center;gap:10px">
-            <a href="#top" class="logo" aria-label="RAG-Bots Studio"
-              style="display:flex;align-items:center;gap:10px;color:var(--gold)">
-              <span style="width:28px;height:28px;border-radius:10px;
-                     background:linear-gradient(135deg,#ffe08a,var(--gold-2));
-                     display:inline-block"></span>
-              <strong>X-Bots Studio</strong>
-            </a>
-            <button class="burger" id="burgerBtn">☰</button>
-          </div>
+          <!-- Бургер справа -->
+          <button class="burger" id="burgerBtn">☰</button>
 
-          <!-- НАВИГАЦИЯ -->
-          <div class="menu-wrapper" style="display:flex;align-items:center;gap:8px">
-            <nav class="nav-menu" id="mainMenu" aria-label="Главное меню">
-              <a class="link" href="#packages">Тарифы</a>
-              <a class="link" href="#benefits">Возможности</a>
-              <a class="link" href="#how">Как это работает</a>
-              <a class="link" href="#tech">Техархитектура</a>
-              <a class="link" href="#guarantee">Гарантии</a>
-              <a class="link" href="#cases">Кейсы</a>
-              <a class="link" href="#faq">FAQ</a>
-              <button id="themeToggle" type="button" class="toggle toggle--accent">Тема</button>
-              <!-- Мобильная кнопка -->
-              <a class="btn btn-primary mobile-only" href="#lead">Заказать демо</a>
-            </nav>
-          </div>
-
-          <!-- Десктопная кнопка справа -->
-          <a class="btn btn-primary desktop-only" href="#lead">Заказать демо</a>
-
+          <!-- Меню -->
+          <nav class="nav-menu" id="mainMenu" aria-label="Главное меню">
+            <a class="link" href="#packages">Тарифы</a>
+            <a class="link" href="#benefits">Преимущества</a>
+            <a class="link" href="#how">Как это работает</a>
+            <a class="link" href="#tech">Техархитектура</a>
+            <a class="link" href="#guarantee">Гарантии</a>
+            <a class="link" href="#cases">Кейсы</a>
+            <a class="link" href="#faq">FAQ</a>
+            <button id="themeToggle" type="button" class="toggle toggle--accent">Тема</button>
+            <a class="btn btn-primary" href="#lead">Заказать демо</a>
+          </nav>
         </div>
       </div>
     </div>
   </header>
-
 
   <!-- HERO -->
   <main id="top" class="hero">
@@ -610,64 +598,6 @@
       </div>
     </div>
   </main>
-
-  <!-- BENEFITS -->
-  <section id="benefits" class="section">
-    <div class="container">
-      <h2 class="section-title">Почему компании выбирают нас</h2>
-      <div class="grid grid-4">
-        <div class="glass card-sm">
-          <h3>Отвечает только по данным</h3>
-          <p class="muted">Будет консультировать так, как вы захотите. При сомнениях — передача менеджеру.</p>
-        </div>
-        <div class="glass card-sm">
-          <h3>Быстрый старт</h3>
-          <p class="muted">FAQ‑бот за 24 часа. Вики‑бот за 48 часов.</p>
-        </div>
-        <div class="glass card-sm">
-          <h3>Полный контроль</h3>
-          <p class="muted">Команды: /addqa, /reindex, /stats, /handsoff. Логи в Google Sheets.</p>
-        </div>
-        <div class="glass card-sm">
-          <h3>Надёжная архитектура</h3>
-          <p class="muted">Эмбеддинги bge‑m3 / MiniLM, FAISS top‑k=5–8, автозапуск и снапшоты.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section id="how" class="section">
-    <div class="container">
-      <h2 class="section-title">Как это работает для вас</h2>
-      <div class="grid grid-4">
-        <div class="glass card-sm">
-          <div class="muted">01</div>
-          <h3>Задаёте вопрос</h3>
-          <p class="muted">В Telegram, как в обычном чате — без формальностей и ожиданий на линии.</p>
-        </div>
-        <div class="glass card-sm">
-          <div class="muted">02</div>
-          <h3>Бот ищет ответ</h3>
-          <p class="muted">Мгновенно находит нужную информацию в базе знаний компании — без ошибок и лишней воды.</p>
-        </div>
-        <div class="glass card-sm">
-          <div class="muted">03</div>
-          <h3>Получаете решение</h3>
-          <p class="muted">Бот отвечает простым и понятным языком, как живой сотрудник — 24/7 и всегда вежливо и с
-            тонкими продажами.</p>
-        </div>
-        <div class="glass card-sm">
-          <div class="muted">04</div>
-          <h3>Сложное? — к менеджеру</h3>
-          <p class="muted">Если вопрос нестандартный, бот передаёт его вашему специалисту — клиент не остаётся без
-            ответа.</p>
-        </div>
-      </div>
-      <h2 class="section-title">Попробуйте демо — убедитесь, что бот отвечает как живой сотрудник и помогает продавать
-        больше.</h2>
-    </div>
-  </section>
 
   <!-- PACKAGES -->
   <section id="packages" class="section">
@@ -741,6 +671,64 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section id="benefits" class="section">
+    <div class="container">
+      <h2 class="section-title">Почему компании выбирают нас</h2>
+      <div class="grid grid-4">
+        <div class="glass card-sm">
+          <h3>Отвечает только по данным</h3>
+          <p class="muted">Будет консультировать так, как вы захотите. При сомнениях — передача менеджеру.</p>
+        </div>
+        <div class="glass card-sm">
+          <h3>Быстрый старт</h3>
+          <p class="muted">FAQ‑бот за 24 часа. Вики‑бот за 48 часов.</p>
+        </div>
+        <div class="glass card-sm">
+          <h3>Полный контроль</h3>
+          <p class="muted">Команды: /addqa, /reindex, /stats, /handsoff. Логи в Google Sheets.</p>
+        </div>
+        <div class="glass card-sm">
+          <h3>Надёжная архитектура</h3>
+          <p class="muted">Эмбеддинги bge‑m3 / MiniLM, FAISS top‑k=5–8, автозапуск и снапшоты.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="section">
+    <div class="container">
+      <h2 class="section-title">Как это работает для вас</h2>
+      <div class="grid grid-4">
+        <div class="glass card-sm">
+          <div class="muted">01</div>
+          <h3>Задаёте вопрос</h3>
+          <p class="muted">В Telegram, как в обычном чате — без формальностей и ожиданий на линии.</p>
+        </div>
+        <div class="glass card-sm">
+          <div class="muted">02</div>
+          <h3>Бот ищет ответ</h3>
+          <p class="muted">Мгновенно находит нужную информацию в базе знаний компании — без ошибок и лишней воды.</p>
+        </div>
+        <div class="glass card-sm">
+          <div class="muted">03</div>
+          <h3>Получаете решение</h3>
+          <p class="muted">Бот отвечает простым и понятным языком, как живой сотрудник — 24/7 и всегда вежливо и с
+            тонкими продажами.</p>
+        </div>
+        <div class="glass card-sm">
+          <div class="muted">04</div>
+          <h3>Сложное? — к менеджеру</h3>
+          <p class="muted">Если вопрос нестандартный, бот передаёт его вашему специалисту — клиент не остаётся без
+            ответа.</p>
+        </div>
+      </div>
+      <h2 class="section-title">Попробуйте демо — убедитесь, что бот отвечает как живой сотрудник и помогает продавать
+        больше.</h2>
     </div>
   </section>
 
