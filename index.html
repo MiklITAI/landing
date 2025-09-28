@@ -745,22 +745,21 @@ footer .muted {
               </li>
             </ul>
           </div>
-          <form class="lead-form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами.');">
+          <form class="lead-form" onsubmit="openBrief(event)">
             <div class="grid" style="gap:10px">
-              <input required placeholder="Ваше имя" />
-              <input placeholder="Компания (опционально)" />
-              <input required type="tel" placeholder="Телефон / Telegram" />
-              <input required type="url" placeholder="Сайт или ссылка на документы" />
-              <select>
-                <option>FAQ‑бот (сайт)</option>
+              <input name="name" required placeholder="Ваше имя" />
+              <input name="company" placeholder="Компания (опционально)" />
+              <input name="contact" required type="tel" placeholder="Телефон / Telegram" />
+              <input name="site" required type="url" placeholder="Сайт или ссылка на документы" />
+              <select name="package">
+                <option>FAQ-бот (сайт)</option>
                 <option>PRO: + аналитика + отзывы</option>
-                <option>Вики‑бот (PDF/DOCX)</option>
+                <option>Вики-бот (PDF/DOCX)</option>
                 <option>PRO+: полное сопровождение</option>
               </select>
-              <textarea rows="4" placeholder="Кратко опишите задачу"></textarea>
+              <textarea name="task" rows="4" placeholder="Кратко опишите задачу"></textarea>
               <button class="btn btn-primary" type="submit">Получить демо</button>
-              <small class="muted">Отправляя форму, вы соглашаетесь с обработкой данных и получаете инструкции в
-                Telegram.</small>
+              <small class="muted">Отправляя форму, вы соглашаетесь с обработкой данных и получаете инструкции в Telegram.</small>
             </div>
           </form>
         </div>
@@ -827,6 +826,22 @@ footer .muted {
     document.getElementById('themeToggle').addEventListener('click', () => {
       document.body.classList.toggle('light');
     });
+    // ====== Отправка «формы» в Telegram без сервера
+    function openBrief(e){
+      e.preventDefault();
+      const form = e.target;
+      const name = form.querySelector('[name="name"]').value;
+      const company = form.querySelector('[name="company"]').value;
+      const contact = form.querySelector('[name="contact"]').value;
+      const site = form.querySelector('[name="site"]').value;
+      const pack = form.querySelector('[name="package"]').value;const task = form.querySelector('[name="task"]').value;
+
+      const text = encodeURIComponent(
+        `Привет! Хочу демо.\n\nИмя: ${name}\nКомпания: ${company}\nКонтакты: ${contact}\nСайт/документы: ${site}\nПакет: ${pack}\nЗадача: ${task}`
+      );
+      
+      window.open(`https://t.me/LazarevMikl?text=${text}`, '_blank');
+    }
   </script>
 </body>
 
